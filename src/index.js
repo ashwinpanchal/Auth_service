@@ -7,12 +7,12 @@ const bodyParser = require("body-parser");
 const app = express();
 
 const startServer = async () => {
+  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(bodyParser.json());
+
+  app.use("/api", ApiRoutes);
+
   app.listen(PORT, () => {
-    app.use(bodyParser.urlencoded({ extended: true }));
-    app.use(bodyParser.json());
-
-    app.use("/api", ApiRoutes);
-
     console.log("Server Running on PORT", PORT);
   });
 };
